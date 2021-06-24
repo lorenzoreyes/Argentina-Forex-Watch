@@ -1,2 +1,2 @@
-account = 'lreyes@udesa.edu.ar'
-password = 'Lr*2013'
+account = 'email@account'
+password = 'password'
