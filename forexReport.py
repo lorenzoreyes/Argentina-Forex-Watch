@@ -1,6 +1,7 @@
 import smtplib    
 from contextlib import contextmanager
-from bcra import *
+from bcra import *         # to run and update data from 
+from futuresCurve import * # the rest of the scripts
 import pandas as pd, datetime as dt,numpy as np
 import re, os, ssl
 import credentials, glob 
