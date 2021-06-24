@@ -1,3 +1,4 @@
 faker -U
 pandas -U
 numpy -U
+yfinance -U
