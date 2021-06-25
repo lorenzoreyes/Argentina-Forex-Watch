@@ -1,5 +1,5 @@
 # Argentina Forex Watch
-> Project to keep updated about Forex Rates and analyse the market current situation
+> Project to keep updated about Forex Rates and analyze the market current situation
 
 > run in terminal pip install -r requirements.txt
 
