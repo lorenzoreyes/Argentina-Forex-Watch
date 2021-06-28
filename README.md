@@ -5,7 +5,7 @@
 
 Content of the project:
 
-<img src="treeArgentina.jpg?raw=true" width="50%" height="50%">
+<img src="treebodhi.png?raw=true" width="50%" height="50%">
 
 ## Forex Watch is a toolbox for us to analyze the market current situation.
 *  Gives us a range of the different values we can obtain for Argentinian's Peso.
@@ -14,6 +14,7 @@ Content of the project:
 * Exchanges.py = quick glance of Official Exchange Rate plus taxes, Cedears Convertion Rate and Argentinian ADR convertion rate.
 * templateReport.py = HTML && CSS template to send reports.
 * forexReport.py = Send reports server.
+* spotRofex.py = Selenium script to download spotRofex.xls from Matba-Rofex CEM.
 * credentials.py = put your email account and password to authorize sending emails.
 
 #### NOTE: the excels and images are self-generated running the scripts.
