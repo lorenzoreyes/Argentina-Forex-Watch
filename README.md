@@ -5,7 +5,7 @@
 
 Content of the project:
 
-<img src="treebodhi.png?raw=true" width="50%" height="50%">
+<img src="treeBodhi.png?raw=true" width="50%" height="50%">
 
 ## Forex Watch is a toolbox for us to analyze the market current situation.
 *  Gives us a range of the different values we can obtain for Argentinian's Peso.
