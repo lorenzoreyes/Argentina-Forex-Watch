@@ -3,3 +3,4 @@ pandas -U
 numpy -U
 yfinance -U
 pyrofex -U
+selenium -U
