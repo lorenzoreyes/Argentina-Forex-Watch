@@ -16,7 +16,7 @@ pyRofex.initialize(user="lreyes3394",
 # make a list of all available month from current to 12 forwards
 hoy = dt.date.today()
 fechas = []
-for i in range(12):
+for i in range(11): #Changed to 11 as 12 sometimes dont have data
     if (hoy.month + i) > 12:
         fechas.append(dt.date(hoy.year+1,(hoy.month+i-12),1))
     else:
@@ -34,7 +34,17 @@ start = dt.date(2021,1,1)
 
 # iterate the download
 futuros = tickets.copy()
-for i in range(len(futuros)):
+
+response = pyRofex.get_all_instruments()
+
+for inst in response['instruments']:
+    futuros.append(inst['instrumentId']['symbol'])
+
+for i in range(len(tickets)):
+    print(f'Is {tickets[i]} a valid instrument? {tickets[i] in futuros}')
+    
+
+for i in range(len(tickets)):
     historic_trades = pyRofex.get_trade_history(tickets[i], start_date=start, end_date=end)
     trades = pd.DataFrame(historic_trades['trades']) # get dataframe from trades dictionary
     asset = pd.DataFrame(trades.price.values,columns=[f'{futuros[i]}'],index=trades.datetime)    
@@ -47,7 +57,7 @@ for i in range(len(futuros)):
 
 # concatenate all dataframes and sort index so no information get deleted
 dolar = pd.concat([futuros[0],futuros[1],futuros[2],futuros[3],futuros[4],futuros[5],futuros[6]\
-                   ,futuros[7],futuros[8],futuros[9],futuros[10],futuros[11]]).sort_index()
+                   ,futuros[7],futuros[8],futuros[9],futuros[10]]).sort_index()#,futuros[11]]).sort_index()
 
 dolar = dolar.fillna(method='ffill')    
 
@@ -57,7 +67,7 @@ dolar.index = pd.to_datetime(dolar[['year','month','day','hour','minute']]).dt.s
 dolar = dolar.iloc[:,5:]
 
 # download USD/ARS spot from Rofex CEM (Only available via web)
-spot = pd.read_fwf('SpotROFEX.xls')
+spot = pd.read_fwf('/home/lorenzo/Downloads/SpotROFEX.xls')
 spot = spot.iloc[2:-7]
 spot.iloc[:,0] = [i[:10] for i in spot.iloc[:,0].to_list()]
 spot.index = spot.iloc[:,0]
@@ -108,7 +118,7 @@ fig = plt.figure(figsize=(50,25))
 ax1 = fig.add_subplot(111)
 cierre.iloc[:,0].plot(ax=ax1, lw=14., color='k')
 cierre.iloc[:,1:].plot(ax=ax1, lw=7.)
-ax1.set_title('Rendimiento Futuros y Spot', fontsize=70, fontweight='bold')
+ax1.set_title('Return of Spot & Futures', fontsize=70, fontweight='bold')
 ax1.grid(True,color='k',linestyle='-.',linewidth=2)
 ax1.legend(loc='center left', bbox_to_anchor=(1, 0.5),fontsize=80)
 plt.xticks(size = 60)
